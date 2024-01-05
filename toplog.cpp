@@ -4,6 +4,23 @@
 #include <fcntl.h>
 #include <iostream>
 #include <cstring>
+#include <chrono>
+#include <thread>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
+void printBuildComplete() {
+    // ANSI Green color
+    std::cout << "\033[0;32m";
+    std::cout << "  ____        _ _     _   ____                   _ \n";
+    std::cout << " | __ ) _   _(_) | __| | |  _ \\  ___  _ __   ___| |\n";
+    // ... rest of the ASCII art ...
+    std::cout << "\033[0m"; // Reset to default color
+}
 
 void monitorDirectory(const std::string& directory) {
     int inotifyFd = inotify_init(); // Initialize inotify
@@ -47,4 +64,10 @@ void monitorDirectory(const std::string& directory) {
     }
 
     close(inotifyFd);
+}
+
+int main() {
+    std::string monitorDir = "/target/";
+    monitorDirectory(monitorDir);
+    return 0;
 }
