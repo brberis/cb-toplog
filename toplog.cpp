@@ -10,6 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <nlohmann/json.hpp>
 
 namespace fs = std::filesystem;
 
@@ -67,7 +68,12 @@ void monitorDirectory(const std::string& directory) {
 }
 
 int main() {
-    std::string monitorDir = "/target/";
+    std::ifstream configFile("config.json");
+    nlohmann::json config;
+    configFile >> config;
+
+    std::string monitorDir = config["monitorDir"];
     monitorDirectory(monitorDir);
+
     return 0;
 }
