@@ -10,7 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
-#include <nlohmann/json.hpp>
+#include <include/json.hpp>
 
 namespace fs = std::filesystem;
 
